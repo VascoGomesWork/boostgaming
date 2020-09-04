@@ -1,0 +1,76 @@
+<html>
+
+<p>Introduce your Current Rank</p>
+<input type="number" id="currentRank" onchange="getPrice()" name="currentRank" value="1" min="1" max="4481" step="20"><br>
+    
+<p>Introduce the Desired Rank</p>
+<input type="number" id="desiredRank" onchange="getPrice()" name="desiredRank" value="21" min="1" max="4481" step="20"><br><br>
+    
+<label for="totalPrice">Total Price: </label>
+<label id ="price" for="price" value="0"> 0.66 </label>
+<label for="euros">Euros</label>
+
+    
+<script>
+    
+    var price =0.66;
+    var rankNum = 0;
+    
+    /*
+    
+    currentRank
+    desiredRank
+    price = rankNum * 0.63;
+    
+    */
+    
+    function getPrice(){
+        
+        //gets the previous rank with is the last current rank
+        var previousRank = document.getElementById("currentRank").defaultValue;
+        var previousDesiredRank = document.getElementById("desiredRank").defaultValue;
+        
+        console.log(previousRank);
+        console.log(previousDesiredRank);
+        
+        //gets the actuall rank
+        var currentRank = document.getElementById("currentRank").value;
+        var desiredRank = document.getElementById("desiredRank").value;
+        
+        console.log(currentRank);
+        console.log(desiredRank);
+        
+        //changes the default value to the currentRank
+        document.getElementById("currentRank").defaultValue = currentRank;
+        document.getElementById("desiredRank").defaultValue = desiredRank;
+        
+        if(currentRank > previousRank){
+            price -= 0.63;
+            //price -= currentRank * 0.03
+            }
+            else
+                if(currentRank < previousRank){
+                   price += 0.63;
+                   //price += currentRank * 0.03
+                   }
+                    
+                    if(desiredRank > previousDesiredRank){
+                        price += 0.63;
+                        //price += desiredRank * 0.03
+                       }
+                        else
+                            if(desiredRank < previousDesiredRank){
+                               price -= 0.63;
+                               //price -= desiredRank * 0.03
+                               }
+               
+            console.log(price);
+            document.getElementById("price").innerHTML = price.toFixed(2);
+        
+        document.getElementById("price").innerHTML = price.toFixed(2);
+    }
+    
+    
+</script>
+    
+</html>
