@@ -13,8 +13,6 @@
   <option value="4500">Grand Master Max</option>
 </select>    
 
-                                
-    
 <p>Introduce the Desired Rank</p>
 
 <select id="desiredRank">
@@ -25,7 +23,7 @@
   <option value="3000">Diamond</option>
   <option value="3500">Master</option>
   <option value="4000">Grand Master</option>
-  <option value="4500">Grand Master</option>
+  <option value="4500">Grand Master Max</option>
 </select>    
 
 
@@ -40,20 +38,197 @@
     
     function calcDiference(desiredRank, currentRank){
         return desiredRank - currentRank;
-    } 
+    }
     
-    function calcPrice(desiredRank, currentRank, diference){
+    function devidRanks(numRank){
+        var lowRank = 0;
+        var mediumRank = 0;
+        var highRank = 0;
+        var rankArray = [];
+        
+        do{
+              if((lowRank == highRank) && (lowRank + mediumRank + highRank != numRank)){
+                  lowRank += 1;
+                  highRank += 1;
+                  
+                  if(lowRank + mediumRank + highRank != numRank){
+                        mediumRank += 1;
+                    }
+                  
+              }
+        
+            
+        }while((lowRank == highRank) && (lowRank + mediumRank + highRank != numRank));  
+            
+        rankArray = [lowRank, mediumRank, highRank];
+         
+        return rankArray;
+    }
+    
+    function getLevels(currentRank, numRank){
+        var i = 0;
+        var levels =[];
+        
+        //gets the levels to the array levels
+        do{
+            
+            //gets the numbers from the correspondent ranks out of the array
+            levels[i] = [document.getElementById("currentRank").options.item(i).value];
+            i++;
+        }while(numRank != i);
+        
+        return levels;
+    }
+    
+    function levelAndCategories(indexLevels, hightRank, smallRank, mediumRank, numRank){
+        
+        var i = 0;
+        var counter = 0;
+        var k = -1;
+        
+        //Initializing the arrays
+        var high = [hightRank];
+        var medium = [mediumRank];
+        var small = [smallRank];
+        var ranks = [numRank];
+        
+
+        //puts in the array the numbers of the levels
+        do{
+            console.log(ranks[i]);
+            ranks[i] = [i];
+            i++;
+        }while(i != numRank);
+        
+        i = 0;
+        
+        do{
+        //puts on the array small the quantity indicated in var smallRank
+        console.log("I value inside do while SMALL loop " + i);
+        small[counter] = ranks[i];
+        i++;
+        counter++;
+        }while(counter != smallRank);
+        
+        counter = 0;
+        
+        do{
+        //puts on the array medium the quantity indicated in var mediumRank
+        console.log("I value inside do while MEDIUM loop " + i);
+        medium[counter] = ranks[i];
+        i++;
+        counter++;
+        }while((counter != mediumRank));
+        
+        counter = 0;
+        
+        do{
+        //puts on the array high the quantity indicated in var hightRank
+        console.log("I value inside do while HIGH loop " + i);
+        high[counter] = ranks[i];
+        i++;
+        counter++;
+        }while(counter != hightRank);
+        
+        do{
+          
+        if(k != numRank){
+            k++;
+        }
+        
+        //MISSING THE DISTINGUISH BETWEEN LEVELS IN THE SAME CATEGORY
+        if(indexLevels < small[k]){
+           return 1;
+        }
+         else 
+             if((indexLevels > small[k]) && (indexLevels <= medium[k])){
+                return 2;
+             }
+              else
+                  if((indexLevels > medium[k]) && (indexLevels <= high[k])){
+                        return 3;
+                    }
+        }while(k != numRank);
+        
+        return 0; 
+    
+    }
+    
+    function getPercentage(levels, devideRanks, numRank, currentRank, desiredRank){
+        
+        var percentage = 0;
+        var i = 0;
+        var j = 0;
+        var counterI = 0;
+        var counterJ = 0;
+        
+        var smallRank = devideRanks[0];
+        var mediumRank = devideRanks[1];
+        var highRank = devideRanks[2];
+        
+        do{
+            
+        if(levels[i] != currentRank){
+                i++;
+                counterI++;
+            }
+             else
+                if(levels[j] != desiredRank){
+                    j++;
+                    counterJ++;
+                }
+            
+        var indexLevelsI = levels.indexOf(levels[i]);
+        var indexLevelsJ = levels.indexOf(levels[j]);
+    
+            
+        //if the category in with the current level and the desired rank are the same level
+        if((levels[i] == currentRank) && (indexLevelsI == counterI) && (levels[j] == desiredRank) && (indexLevelsJ == counterJ)){
+
+            //function that makes the match between the levels and the categories
+            var levelsCategories = levelAndCategories(indexLevelsJ, highRank, smallRank, mediumRank, numRank);
+            percentage = 7 * levelsCategories;
+            }
+            else
+                //if the category in with the current level and the desired rank are NOT the same level
+                if((levels[i] == currentRank) && (indexLevelsI != counterI) && (levels[j] == desiredRank) && (indexLevelsJ != counterJ)){
+
+                    //function that makes the match between the levels and the categories
+                    var levelsCategories = levelAndCategories(indexLevelsJ, highRank, smallRank, mediumRank, numRank);
+                    percentage = 7 * levelsCategories;
+                   }
+                  
+        }while((levels[i] != currentRank) || (levels[j] != desiredRank));
+        
+        return percentage;
+    }
+    
+    function calcPrice(desiredRank, currentRank, diference, numRank){
         
         var price = 0;
-        //price = diference * 0.03;
+        var dif = 500;
+        var percentage = 0;
         
-        /*while(){*/
-              
+        //function that given the number of ranks devides it into 3 categories
+        var devideRanks = devidRanks(numRank);
+        
+        //function that gets the levels and no the quantity of levels that are
+        var levels = getLevels(currentRank, numRank);
+        
+        //function that gets the percentage acording to the levels
+        var percentage = getPercentage(levels, devideRanks, numRank, currentRank, desiredRank);
+        
+        do{
+            
+        if(dif != diference){    
+            dif += 500;
+        }
+            
         //if diference is the same but the levels are easier
-        if(){
-            price = diference * 0.03;
+        if((diference == dif)){
+            price = diference * 0.03 + percentage;
            }
-            else
+            /*else
                 //if diference is the same but the levels are harder
                 if(){
                     price = diference * 0.03;
@@ -62,9 +237,12 @@
                         //if diference is very high
                         if(){
                             price = diference * 0.03;
-                         }
-            //}
+                         }*/
+            
         
+        
+        }while(diference != dif);
+            
         return price;
     }
     
@@ -75,24 +253,20 @@
         //Gets the actuall rank
         var currentRank = document.getElementById("currentRank").value;
         var desiredRank = document.getElementById("desiredRank").value;
-              
+        var numRank = document.getElementById("currentRank").length;
+        
+        
         //Gets the difference to another variable
         var diference = calcDiference(desiredRank, currentRank);
         
-        var currentRank2 = currentRank;
-        var desiredRank2 = desiredRank;
+        var currentRank2 = 1000;//currentRank;
+        var desiredRank2 = 1000;//desiredRank;
             
+        
             if(desiredRank == parseInt(currentRank) + diference){
             
                 //Only stops the do while cycle when the variables all the variables match with his own pair
                 do{
-                
-                    if ((currentRank == currentRank2) && (desiredRank == desiredRank2)){
-                        
-                        //Gets the price
-                        price = calcPrice(desiredRank, currentRank, diference);
-            
-                    }
                 
                     //Do a if that increments the currentRank2 until it matches the currentRank and after that being done, does the same thing to the desiredRank2 and increments until it matches the desiredRank
                     
@@ -104,163 +278,20 @@
                                 desiredRank2 += 500;
                              }
                     
-                    
-                }while((desiredRank != desiredRank2) && (currentRank != currentRank2))
+                    if ((currentRank == currentRank2) && (desiredRank == desiredRank2)){
+                        
+                        //Gets the price
+                        price = calcPrice(desiredRank, currentRank, diference, numRank);
+            
+                    }
+                
+   
+                }while((desiredRank != desiredRank2) || (currentRank != currentRank2));
             }
         console.log(price);
         document.getElementById("price").innerHTML = price.toFixed(2);
     }
     
-    
-    
-        /*if (desiredRank == parseInt(currentRank) + 500){
-            
-            if ((currentRank == 500) && (desiredRank == 1500)){
-            preco = 31.41;  
-            document.getElementById("price").innerHTML = preco.toFixed(2);
-            }
-              else
-                    if ((currentRank == 1500) && (desiredRank == 2000)){
-                    preco = 29.07;  
-                    document.getElementById("price").innerHTML = preco.toFixed(2);
-                    }
-                    else
-                        if ((currentRank == 2000) && (desiredRank == 2500)){
-                        preco = 36.20;  
-                        document.getElementById("price").innerHTML = preco.toFixed(2);
-                        }
-                        else
-                            if ((currentRank == 2500) && (desiredRank == 3000)){
-                            preco = 51.48;  
-                            document.getElementById("price").innerHTML = preco.toFixed(2);
-                            }
-                            else
-                                if ((currentRank == 3000) && (desiredRank == 3500)){
-                                preco = 99.11;  
-                                document.getElementById("price").innerHTML = preco.toFixed(2);
-                                }
-                                else
-                                    if ((currentRank == 3500) && (desiredRank == 4000)){
-                                    preco = 202.70;  
-                                    document.getElementById("price").innerHTML = preco.toFixed(2);
-                                    }
-                                    else
-                                        if ((currentRank == 4000) && (desiredRank == 4481)){
-                                        preco = 932.46;  
-                                        document.getElementById("price").innerHTML = preco.toFixed(2);
-                                        }
-        }
-        else 
-        if(desiredRank == parseInt(currentRank) + 1000){
-            
-            if ((currentRank == 500) && (desiredRank == 1500)){
-            preco = 31.41;  
-            document.getElementById("price").innerHTML = preco.toFixed(2);
-            }
-            else
-                if ((currentRank == 1500) && (desiredRank == 2500)){
-                    preco = 63.75;  
-                    document.getElementById("price").innerHTML = preco.toFixed(2);
-                }
-                else
-                    if ((currentRank == 2500) && (desiredRank == 3500)){
-                        preco = 141.95;  
-                        document.getElementById("price").innerHTML = preco.toFixed(2);
-                    }
-                    else
-                        if ((currentRank == 3500) && (desiredRank == 4481)){
-                            preco = 932.46;  
-                            document.getElementById("price").innerHTML = preco.toFixed(2);
-                        }
-                        else
-                            if ((currentRank == 2000) && (desiredRank == 3000)){
-                                preco = 87.58;  
-                                document.getElementById("price").innerHTML = preco.toFixed(2);
-                            }
-                            else
-                                if ((currentRank == 3000) && (desiredRank == 4000)){
-                                    preco = 292.95;  
-                                    document.getElementById("price").innerHTML = preco.toFixed(2);
-                                }
-        }
-        else if(desiredRank == parseInt(currentRank) + 1500){
-            
-                if ((currentRank == 500) && (desiredRank == 2000)){
-                    preco = 58.97;  
-                    document.getElementById("price").innerHTML = preco.toFixed(2);
-                }
-                else
-                    if ((currentRank == 1500) && (desiredRank == 3000)){
-                        preco = 115.13;  
-                        document.getElementById("price").innerHTML = preco.toFixed(2);
-                    }
-                    else
-                        if ((currentRank == 2000) && (desiredRank == 3500)){
-                            preco = 178.05;  
-                            document.getElementById("price").innerHTML = preco.toFixed(2);
-                        }
-                        else
-                            if ((currentRank == 2500) && (desiredRank == 4000)){
-                                preco = 344.25;  
-                                document.getElementById("price").innerHTML = preco.toFixed(2);
-                            }   
-        }
-        else if(desiredRank == parseInt(currentRank) + 2000){
-            
-                 if ((currentRank == 500) && (desiredRank == 2500)){
-                        preco = 95.10;  
-                        document.getElementById("price").innerHTML = preco.toFixed(2);
-                 }
-                 else
-                     if ((currentRank == 1500) && (desiredRank == 3500)){
-                            preco = 205.60;  
-                            document.getElementById("price").innerHTML = preco.toFixed(2);
-                        }
-                        else
-                            if ((currentRank == 2000) && (desiredRank == 4000)){
-                                preco = 380.35;  
-                                document.getElementById("price").innerHTML = preco.toFixed(2);
-                            }
-                            else
-                                 if ((currentRank == 2500) && (desiredRank == 4481)){
-                                        preco = 1074.01;  
-                                        document.getElementById("price").innerHTML = preco.toFixed(2);
-                                  }
-        }
-        else if(desiredRank == parseInt(currentRank) + 2500){
-            
-            if ((currentRank == 500) && (desiredRank == 3000)){
-                    preco = 146.48;  
-                    document.getElementById("price").innerHTML = preco.toFixed(2);
-             }
-              else
-                   if ((currentRank == 1500) && (desiredRank == 4000)){
-                        preco = 407.90;  
-                        document.getElementById("price").innerHTML = preco.toFixed(2);
-                    }
-                        
-        }
-        else if(desiredRank == parseInt(currentRank) + 3000){
-            
-            if ((currentRank == 500) && (desiredRank == 3500)){
-                    preco = 236.95;  
-                    document.getElementById("price").innerHTML = preco.toFixed(2);
-             }
-        }
-        else if(desiredRank == parseInt(currentRank) + 3500){
-            
-            if ((currentRank == 500) && (desiredRank == 4000)){
-                    preco = 439.25;  
-                    document.getElementById("price").innerHTML = preco.toFixed(2);
-             }
-            
-        else if ((currentRank == 500) && (desiredRank == 4481)){
-                    preco = 1169.01;  
-                    document.getElementById("price").innerHTML = preco.toFixed(2);
-             }
-        }*/
-                   
-       
     
     
 </script>
