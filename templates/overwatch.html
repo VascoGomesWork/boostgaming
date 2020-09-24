@@ -71,25 +71,25 @@
                   <div class="block-41-text">
                       <p>Introduce your Current Rank</p>
                       <select id="currentRank">
-                      <option value="500">Bronze</option>
+                      <option value="1000">Bronze</option>
                       <option value="1500">Silver</option>
                       <option value="2000">Gold</option>
                       <option value="2500">Plat</option>
                       <option value="3000">Diamond</option>
-                      <option value="3100">Diamond 3100</option>
-                      <option value="3200">Diamond 3200</option>
-                      <option value="3300">Diamond 3300</option>
-                      <option value="3400">Diamond 3400</option>
-                      <option value="3500">Master</option>
-                      <option value="3600">Master 3600</option>
-                      <option value="3700">Master 3700</option>
-                      <option value="3800">Master 3800</option>
-                      <option value="3900">Master 3900</option>
-                      <option value="4000">Grand Master</option>
-                      <option value="4100">Grand Master 4100</option>
-                      <option value="4200">Grand Master 4200</option>
-                      <option value="4300">Grand Master 4300</option>
-                      <option value="4481">Grand Master Max</option>
+                      <option value="3500">Diamond 3100</option>
+                      <option value="4000">Diamond 3200</option>
+                      <option value="4500">Diamond 3300</option>
+                      <option value="5000">Diamond 3400</option>
+                      <option value="5500">Master</option>
+                      <option value="6000">Master 3600</option>
+                      <option value="6500">Master 3700</option>
+                      <option value="7000">Master 3800</option>
+                      <option value="7500">Master 3900</option>
+                      <option value="8000">Grand Master</option>
+                      <option value="8500">Grand Master 4100</option>
+                      <option value="9000">Grand Master 4200</option>
+                      <option value="9500">Grand Master 4300</option>
+                      <option value="10000">Grand Master Max</option>
                     </select>  
                   </div>
                 
@@ -97,25 +97,25 @@
                     <div class="block-41-text">
                         <p>Introduce the Desired Rank</p>
                         <select id="desiredRank">
-                          <option value="500">Bronze</option>
+                          <option value="1000">Bronze</option>
                           <option value="1500">Silver</option>
                           <option value="2000">Gold</option>
                           <option value="2500">Plat</option>
                           <option value="3000">Diamond</option>
-                          <option value="3100">Diamond 3100</option>
-                          <option value="3200">Diamond 3200</option>
-                          <option value="3300">Diamond 3300</option>
-                          <option value="3400">Diamond 3400</option>
-                          <option value="3500">Master</option>
-                          <option value="3600">Master 3600</option>
-                          <option value="3700">Master 3700</option>
-                          <option value="3800">Master 3800</option>
-                          <option value="3900">Master 3900</option>
-                          <option value="4000">Grand Master</option>
-                          <option value="4100">Grand Master 4100</option>
-                          <option value="4200">Grand Master 4200</option>
-                          <option value="4300">Grand Master 4300</option>
-                          <option value="4481">Grand Master Max</option>
+                          <option value="3500">Diamond 3100</option>
+                          <option value="4000">Diamond 3200</option>
+                          <option value="4500">Diamond 3300</option>
+                          <option value="5000">Diamond 3400</option>
+                          <option value="5500">Master</option>
+                          <option value="6000">Master 3600</option>
+                          <option value="6500">Master 3700</option>
+                          <option value="7000">Master 3800</option>
+                          <option value="7500">Master 3900</option>
+                          <option value="8000">Grand Master</option>
+                          <option value="8500">Grand Master 4100</option>
+                          <option value="9000">Grand Master 4200</option>
+                          <option value="9500">Grand Master 4300</option>
+                          <option value="10000">Grand Master Max</option>
                         </select>
                         
                         <p>Select your platform, server and role</p>
@@ -237,359 +237,7 @@
     <script src="js/main.js"></script>
 
     <script src="js/main.js"></script>
-    
-      <script>
-          
-        function getPrice()
-            {
-                
-                //gets the previous rank with is the last current rank
-                 var previousRank = document.getElementById("currentRank").defaultValue;
-                 var previousDesiredRank = document.getElementById("desiredRank").defaultValue;
-                 
-                 var currentRank = document.getElementById("currentRank").value;
-                 var desiredRank = document.getElementById("desiredRank").value;
-                 var server = document.getElementById("server").value;
-                 var role = document.getElementById("role").value;
-                 var priority = document.getElementById("priority").checked;
-                 var booster = document.getElementById("booster").checked;
-                 var hero = document.getElementById("hero").checked;
-                 var stream = document.getElementById("stream").checked;
-                 var promo = document.getElementById("promo").checked;
-                 var promoCode = document.getElementById("promoCode").value;
-                 var price = 0;
-                
-                //changes the default value to the currentRank
-                document.getElementById("currentRank").defaultValue = currentRank;
-                document.getElementById("desiredRank").defaultValue = desiredRank;
-                
-                 console.log(currentRank);
-                 console.log(desiredRank);
-                 console.log(server);
-                 console.log(role);
-                 console.log(priority);
-                 console.log(booster);
-                 console.log(hero);
-                 console.log(stream);
-                 console.log(promo);
-                 console.log(promoCode);
-                 
-                
-        // --------- RANKING SYSTEM ----------//        
-        
-        if ((desiredRank == parseInt(currentRank) + 100) || (desiredRank == parseInt(currentRank) + 181)){
-            
-            if ((currentRank == 3000) && (desiredRank == 3100)){
-            price = 31.41;  
-            document.getElementById("price").innerHTML = price.toFixed(2);
-            }
-              else
-                    if ((currentRank == 3100) && (desiredRank == 3200)){
-                    price = 29.07;  
-                    document.getElementById("price").innerHTML = price.toFixed(2);
-                    }
-                    else
-                        if ((currentRank == 3200) && (desiredRank == 3300)){
-                        price = 36.20;  
-                        document.getElementById("price").innerHTML = price.toFixed(2);
-                        }
-                        else
-                            if ((currentRank == 3300) && (desiredRank == 3400)){
-                            price = 51.48;  
-                            document.getElementById("price").innerHTML = price.toFixed(2);
-                            }
-                            else
-                                if ((currentRank == 3400) && (desiredRank == 3500)){
-                                price = 99.11;  
-                                document.getElementById("price").innerHTML = price.toFixed(2);
-                                }
-                                else
-                                    if ((currentRank == 3500) && (desiredRank == 3600)){
-                                    price = 202.70;  
-                                    document.getElementById("price").innerHTML = price.toFixed(2);
-                                    }
-                                    else
-                                        if ((currentRank == 3600) && (desiredRank == 3700)){
-                                        price = 932.46;  
-                                        document.getElementById("price").innerHTML = price.toFixed(2);
-                                        }
-                                        else
-                                            if ((currentRank == 3700) && (desiredRank == 3800)){
-                                                price = 932.46;  
-                                                document.getElementById("price").innerHTML = price.toFixed(2);
-                                            }
-                                             else
-                                                 if ((currentRank == 3800) && (desiredRank == 3900)){
-                                                    price = 932.46;  
-                                                    document.getElementById("price").innerHTML = price.toFixed(2);
-                                                  }
-                                                    else
-                                                        if ((currentRank == 3900) && (desiredRank == 4000)){
-                                                            price = 932.46;  
-                                                            document.getElementById("price").innerHTML = price.toFixed(2);
-                                                         }
-                                                            else
-                                                                if ((currentRank == 4000) && (desiredRank == 4100)){
-                                                                    price = 932.46;  
-                                                                    document.getElementById("price").innerHTML = price.toFixed(2);
-                                                                 }
-                                                                    else
-                                                                        if ((currentRank == 4100) && (desiredRank == 4200)){
-                                                                            price = 932.46;  
-                                                                            document.getElementById("price").innerHTML = price.toFixed(2);
-                                                                         }
-                                                                          else
-                                                                              if ((currentRank == 4200) && (desiredRank == 4300)){
-                                                                                    price = 932.46;  
-                                                                                    document.getElementById("price").innerHTML = price.toFixed(2);
-                                                                                }
-                                                                                else
-                                                                                    if ((currentRank == 4300) && (desiredRank == 4481)){
-                                                                                        price = 932.46;  
-                                                                                        document.getElementById("price").innerHTML = price.toFixed(2);
-                                                                                    }
-        }   
-        else         
-        
-        if ((desiredRank == parseInt(currentRank) + 500) || (desiredRank == parseInt(currentRank) + 481)){
-            
-            if ((currentRank == 500) && (desiredRank == 1500)){
-            price = 31.41;  
-            document.getElementById("price").innerHTML = price.toFixed(2);
-            }
-              else
-                    if ((currentRank == 1500) && (desiredRank == 2000)){
-                    price = 29.07;  
-                    document.getElementById("price").innerHTML = price.toFixed(2);
-                    }
-                    else
-                        if ((currentRank == 2000) && (desiredRank == 2500)){
-                        price = 36.20;  
-                        document.getElementById("price").innerHTML = price.toFixed(2);
-                        }
-                        else
-                            if ((currentRank == 2500) && (desiredRank == 3000)){
-                            price = 51.48;  
-                            document.getElementById("price").innerHTML = price.toFixed(2);
-                            }
-                            else
-                                if ((currentRank == 3000) && (desiredRank == 3500)){
-                                price = 99.11;  
-                                document.getElementById("price").innerHTML = price.toFixed(2);
-                                }
-                                 else
-                                     if ((currentRank == 3100) && (desiredRank == 3600)){
-                                        price = 1;  
-                                        document.getElementById("price").innerHTML = price.toFixed(2);
-                                        }
-                                         else
-                                             if ((currentRank == 3200) && (desiredRank == 3700)){
-                                                    price = 2;  
-                                                    document.getElementById("price").innerHTML = price.toFixed(2);
-                                                }
-                                                 else
-                                                     if ((currentRank == 3300) && (desiredRank == 3800)){
-                                                            price = 3;  
-                                                            document.getElementById("price").innerHTML = price.toFixed(2);
-                                                        }
-                                                        else
-                                                            if ((currentRank == 3400) && (desiredRank == 3900)){
-                                                                price = 4;  
-                                                                document.getElementById("price").innerHTML = price.toFixed(2);
-                                                             }
-                                                              else
-                                                                  if ((currentRank == 3500) && (desiredRank == 4000)){
-                                                                        price = 202.70;  
-                                                                        document.getElementById("price").innerHTML = price.toFixed(2);
-                                                                    }
-                                                                    else
-                                                                        if ((currentRank == 3600) && (desiredRank == 4100)){
-                                                                            price = 5;  
-                                                                            document.getElementById("price").innerHTML = price.toFixed(2);
-                                                                        }
-                                                                        else
-                                                                            if ((currentRank == 3700) && (desiredRank == 4200)){
-                                                                                    price = 6;  
-                                                                                    document.getElementById("price").innerHTML = price.toFixed(2);
-                                                                             }
-                                                                              else
-                                                                                  if ((currentRank == 3800) && (desiredRank == 4300)){
-                                                                                        price = 7;  
-                                                                                        document.getElementById("price").innerHTML = price.toFixed(2);
-                                                                                    }
-                                                                                    else
-                                                                                        if ((currentRank == 3900) && (desiredRank == 4400)){
-                                                                                                price = 8;  
-                                                                                                document.getElementById("price").innerHTML = price.toFixed(2);
-                                                                                        }         
-                                                                                        else
-                                                                                            if ((currentRank == 4000) && (desiredRank == 4481)){
-                                                                                                price = 932.46;  
-                                                                                                document.getElementById("price").innerHTML = price.toFixed(2);
-                                                                                             }
-        }
-        else 
-        if((desiredRank == parseInt(currentRank) + 1000) || (desiredRank == parseInt(currentRank) + 981)){
-            
-            if ((currentRank == 500) && (desiredRank == 1500)){
-            price = 31.41;  
-            document.getElementById("price").innerHTML = price.toFixed(2);
-            }
-            else
-                if ((currentRank == 1500) && (desiredRank == 2500)){
-                    price = 63.75;  
-                    document.getElementById("price").innerHTML = price.toFixed(2);
-                }
-                else
-                    if ((currentRank == 2500) && (desiredRank == 3500)){
-                        price = 141.95;  
-                        document.getElementById("price").innerHTML = price.toFixed(2);
-                    }
-                    else
-                        if ((currentRank == 3500) && (desiredRank == 4481)){
-                            price = 932.46;  
-                            document.getElementById("price").innerHTML = price.toFixed(2);
-                        }
-                        else
-                            if ((currentRank == 2000) && (desiredRank == 3000)){
-                                price = 87.58;  
-                                document.getElementById("price").innerHTML = price.toFixed(2);
-                            }
-                            else
-                                if ((currentRank == 3000) && (desiredRank == 4000)){
-                                    price = 292.95;  
-                                    docpriceument.getElementById("price").innerHTML = price.toFixed(2);
-                                }
-                                else
-                                    if ((currentRank == 3100) && (desiredRank == 4100)){
-                                        price = 1;  
-                                        docpriceument.getElementById("price").innerHTML = price.toFixed(2);
-                                    }
-                                    else
-                                        if ((currentRank == 3200) && (desiredRank == 4200)){
-                                            price = 292.95;  
-                                            docpriceument.getElementById("price").innerHTML = price.toFixed(2);
-                                         }
-                                        else
-                                            if ((currentRank == 3300) && (desiredRank == 4300)){
-                                                price = 292.95;  
-                                                docpriceument.getElementById("price").innerHTML = price.toFixed(2);
-                                             }
-                
-        }
-        else if(desiredRank == parseInt(currentRank) + 1500){
-            
-                if ((currentRank == 500) && (desiredRank == 2000)){
-                    price = 58.97;  
-                    document.getElementById("price").innerHTML = price.toFixed(2);
-                }
-                else
-                    if ((currentRank == 1500) && (desiredRank == 3000)){
-                        price = 115.13;  
-                        document.getElementById("price").innerHTML = price.toFixed(2);
-                    }
-                    else
-                        if ((currentRank == 2000) && (desiredRank == 3500)){
-                            price = 178.05;  
-                            document.getElementById("price").innerHTML = price.toFixed(2);
-                        }
-                        else
-                            if ((currentRank == 2500) && (desiredRank == 4000)){
-                                price = 344.25;  
-                                document.getElementById("price").innerHTML = price.toFixed(2);
-                            }
-                        
-        }
-        else if((desiredRank == parseInt(currentRank) + 2000) || (desiredRank == parseInt(currentRank) + 1981)){
-            
-                 if ((currentRank == 500) && (desiredRank == 2500)){
-                        price = 95.10;  
-                        document.getElementById("price").innerHTML = price.toFixed(2);
-                 }
-                 else
-                     if ((currentRank == 1500) && (desiredRank == 3500)){
-                            price = 205.60;  
-                            document.getElementById("price").innerHTML = price.toFixed(2);
-                        }
-                        else
-                            if ((currentRank == 2000) && (desiredRank == 4000)){
-                                price = 380.35;  
-                                document.getElementById("price").innerHTML = price.toFixed(2);
-                            }
-                            else
-                                 if ((currentRank == 2500) && (desiredRank == 4481)){
-                                        price = 1074.01;  
-                                        document.getElementById("price").innerHTML = price.toFixed(2);
-                                  }
-        }
-        else if(desiredRank == parseInt(currentRank) + 2500){
-            
-            if ((currentRank == 500) && (desiredRank == 3000)){
-                    price = 146.48;  
-                    document.getElementById("price").innerHTML = price.toFixed(2);
-             }
-              else
-                   if ((currentRank == 1500) && (desiredRank == 4000)){
-                        price = 407.90;  
-                        document.getElementById("price").innerHTML = price.toFixed(2);
-                    }
-                        
-        }
-        else if(desiredRank == parseInt(currentRank) + 3000){
-            
-            if ((currentRank == 500) && (desiredRank == 3500)){
-                    price = 236.95;  
-                    document.getElementById("price").innerHTML = price.toFixed(2);
-             }
-        }
-        else if(desiredRank == parseInt(currentRank) + 3500){
-            
-            if ((currentRank == 500) && (desiredRank == 4000)){
-                    price = 439.25;  
-                    document.getElementById("price").innerHTML = price.toFixed(2);
-             }
-            
-        else if ((currentRank == 500) && (desiredRank == 4481)){
-                    price = 1169.01;  
-                    document.getElementById("price").innerHTML = price.toFixed(2);
-             }
-        }
-        
-            // ---------ADDING THE ROLES MONEY ---------//
-                
-        if(role == "support"){
-           price += 232.99;
-           }
-                
-        // ----------ADDITIONAL MARKERS---------//
-                
-        if(priority == true){
-           price += 0.13;
-           }
-                
-        if(booster == true){
-           price += 0.33;
-           }
-                
-        if(hero == true){
-           price += 0.13;
-           }
-                
-        if(stream == true){
-           price += 0.10;
-           }
-                
-        if((promo == true) && (promoCode == "boost_gaming")){
-           price *= 0.1;
-           }
-                
-        console.log(price);
-        document.getElementById("price").innerHTML = price.toFixed(2);
-                
-            }
-
-          
-      </script>
+    <script src="../templates/js/myJavascript.js"></script>
       
   </body>
 </html>

@@ -1,47 +1,14 @@
-<html>
-
-<p>Introduce your Current Rank</p>
-    
-<select id="currentRank">
-  <option value="1000">Bronze</option>
-  <option value="1500">Silver</option>
-  <option value="2000">Gold</option>
-  <option value="2500">Plat</option>
-  <option value="3000">Diamond</option>
-  <option value="3500">Master</option>
-  <option value="4000">Grand Master</option>
-  <option value="4500">Grand Master Max</option>
-</select>    
-
-<p>Introduce the Desired Rank</p>
-
-<select id="desiredRank">
-  <option value="1000">Bronze</option>
-  <option value="1500">Silver</option>
-  <option value="2000">Gold</option>
-  <option value="2500">Plat</option>
-  <option value="3000">Diamond</option>
-  <option value="3500">Master</option>
-  <option value="4000">Grand Master</option>
-  <option value="4500">Grand Master Max</option>
-</select>    
-
-
-    <br><br>
-<button onclick="getPrice()">Submit</button>
-<label for="totalPrice">Total Price: </label>
-<label id ="price"> 0 </label>
-<label for="euros">Euros</label>
-
-<script src="../templates/js/myJavascript.js"></script>
-<script>
-    
- //document.getElementById("price").innerHTML = getPrice();
-    
-   /* 
-    function calcDiference(desiredRank, currentRank){
+function calcDiference(desiredRank, currentRank){
         return desiredRank - currentRank;
     }
+
+function checkIsEven(numRank){
+    if(numRank % 2 == 0){
+           return 1;
+           }
+            else
+                return 2;
+}
     
     function devidRanks(numRank){
         var lowRank = 0;
@@ -49,20 +16,30 @@
         var highRank = 0;
         var rankArray = [];
         
+        //checks if the num of ranks is even or not
+        var isEven = checkIsEven(numRank);
+        
+        //REVIEW FUNCTION
         do{
-              if((lowRank == highRank) && (lowRank + mediumRank + highRank != numRank)){
+            
+              if((lowRank == highRank)){
                   lowRank += 1;
                   highRank += 1;
-                  
-                  if(lowRank + mediumRank + highRank != numRank){
-                        mediumRank += 1;
+                  mediumRank += 1;
+                }  
+            
+                if(lowRank + mediumRank + highRank > numRank){
+                        mediumRank = mediumRank - isEven;
                     }
-                  
-              }
-        
+                  /*if(lowRank + mediumRank + highRank != numRank - isEven){
+                        mediumRank += 1;
+                    }*/
+ 
+        }while((lowRank + mediumRank + highRank != numRank));
             
-        }while((lowRank == highRank) && (lowRank + mediumRank + highRank != numRank));  
-            
+        /*lowRank = 7;
+        mediumRank = 5;
+        highRank = 7;*/
         rankArray = [lowRank, mediumRank, highRank];
          
         return rankArray;
@@ -231,7 +208,7 @@
             dif += 500;
         }
             
-        //if diference is the same but the levels are easier
+        //makes the price for the different pages from the website
         if((diference == dif)){
             price = diference * 0.03 + percentage;
            }
@@ -244,7 +221,7 @@
                         //if diference is very high
                         if(){
                             price = diference * 0.03;
-                         }
+                         }*/
             
         
         
@@ -295,12 +272,30 @@
    
                 }while((desiredRank != desiredRank2) || (currentRank != currentRank2));
             }
+        
+            // ----------ADDITIONAL MARKERS---------//
+            /*    
+            if(priority == true){
+               price += 0.13;
+               }
+
+            if(champion == true){
+               price += 0.33;
+               }
+
+            if(duoLobby == true){
+               price += 0.13;
+               }
+
+            if(coatching == true){
+               price += 0.10;
+               }
+
+            if((promo == true) && (promoCode == "boost_gaming")){
+               price += 1 * 0.1;
+               }*/
+            
         console.log(price);
         document.getElementById("price").innerHTML = price.toFixed(2);
     }
-    */
     
-    
-</script>
-    
-</html>
